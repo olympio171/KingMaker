@@ -40,7 +40,7 @@
     }
     a { color: var(--gold); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    img { max-width: 100%; display: block; }
+    img { max-width: 100%; height: auto; display: block; }
     .wrap { width: min(1120px, 100% - 32px); margin: 0 auto; }
 
     /* En-tête */
@@ -120,8 +120,10 @@
     }
     .good { color: var(--good); }
 
-    .split { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
+    .split { display: grid; grid-template-columns: 1fr 1.45fr; gap: 48px; align-items: center; }
+    .split figure { margin: 0; }
     .split .window { margin: 0; }
+    figcaption { margin-top: 12px; color: var(--muted); font-size: 14px; text-align: center; }
     .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
     .checks li { display: flex; gap: 12px; color: var(--muted); }
     .checks li::before {
@@ -169,7 +171,7 @@
       .nav .btn { margin-left: auto; }
       .hero { padding-top: 56px; }
       .split { grid-template-columns: 1fr; gap: 28px; }
-      .split .window { order: -1; }
+      .split figure { order: -1; }
       section { padding-top: 72px; }
       .mobile-note { display: block; }
       .stat { padding: 18px 8px; }
@@ -274,9 +276,12 @@
             <li><span><b>Simulateur.</b> Teste un « et si » ou prépare une draft hors partie.</span></li>
           </ul>
         </div>
-        <div class="window">
-          <img src="app-ban.png" width="1440" height="900" loading="lazy" alt="L'onglet Bans de Kingmaker : les bans qui rapportent le plus à ton équipe">
-        </div>
+        <figure>
+          <div class="window">
+            <img src="app-ban.png" width="868" height="632" loading="lazy" alt="L'onglet Bans de Kingmaker : les bans qui rapportent le plus à ton équipe">
+          </div>
+          <figcaption>L'onglet Bans : ce que chaque ban rapporte à ton équipe.</figcaption>
+        </figure>
       </div>
     </section>
 
