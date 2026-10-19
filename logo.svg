@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <!-- Logo Kingmaker : couronne dorée et gemme bleue, sur le fond sombre de l'app. -->
+  <rect x="1" y="1" width="98" height="98" rx="22" fill="#0f141b" stroke="#785a28" stroke-width="2"/>
+  <path d="M22 66 L18 34 L36 48 L50 24 L64 48 L82 34 L78 66 Z" fill="#c8aa6e"/>
+  <rect x="22" y="70" width="56" height="9" rx="2" fill="#c8aa6e"/>
+  <circle cx="18" cy="33" r="4.5" fill="#c8aa6e"/>
+  <circle cx="50" cy="23" r="4.5" fill="#c8aa6e"/>
+  <circle cx="82" cy="33" r="4.5" fill="#c8aa6e"/>
+  <circle cx="50" cy="56" r="6" fill="#4a90d9"/>
+</svg>
