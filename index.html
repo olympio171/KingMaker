@@ -67,6 +67,9 @@
     .btn.small { padding: 7px 14px; font-size: 14px; }
     .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
     .btn svg { width: 18px; height: 18px; }
+    button.btn { font: inherit; font-weight: 600; cursor: pointer; }
+    .link { font: inherit; color: var(--gold); background: none; border: 0; padding: 0; cursor: pointer; }
+    .link:hover { text-decoration: underline; }
 
     /* Accroche */
     .hero { position: relative; padding: 88px 0 40px; text-align: center; overflow: hidden; }
@@ -159,6 +162,59 @@
     details[open] summary::after { transform: rotate(45deg); }
     details p { margin: 0 0 18px; color: var(--muted); }
 
+    /* Fenêtre « Ton téléchargement commence » : les confirmations du navigateur et de Windows */
+    #install-help {
+      width: min(720px, 100% - 32px); max-height: calc(100% - 32px); padding: 0; overflow: auto;
+      background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+    }
+    #install-help::backdrop { background: rgba(4, 6, 9, .75); backdrop-filter: blur(4px); }
+    .ih { position: relative; padding: 28px 28px 24px; }
+    .ih-close {
+      position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%;
+      border: 0; background: transparent; color: var(--muted); font-size: 24px; line-height: 1; cursor: pointer;
+    }
+    .ih-close:hover { background: var(--panel-2); color: var(--ink); }
+    .ih h2 { font-size: 26px; margin: 0 40px 4px 0; }
+    .ih-sub { margin: 0; color: var(--muted); }
+    .ih-steps { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 22px; }
+    .ih-label { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-bottom: 10px; }
+    .ih-label .num {
+      flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--gold); color: #14100a; font-size: 14px; font-weight: 700;
+    }
+    .ih-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; color: var(--muted); }
+    .ih-chain .arrow { color: var(--gold); }
+    .ih-other { display: none; }
+    .not-edge .ih-edge { display: none; }
+    .not-edge .ih-other { display: flex; }
+    .ss-frames { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ss {
+      position: relative; display: flex; flex-direction: column; min-height: 168px;
+      padding: 14px 16px 12px; border-radius: 6px; background: #1060b5; color: #fff; font-size: 12px; line-height: 1.45;
+    }
+    .ss-title { font-size: 17px; font-weight: 300; line-height: 1.2; margin-bottom: 8px; }
+    .ss .bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .32); margin: 6px 0; }
+    .ss .bar.short { width: 62%; }
+    .ss-link { align-self: flex-start; margin-top: 8px; text-decoration: underline; }
+    .ss-meta { color: rgba(255, 255, 255, .85); }
+    .ss-buttons { margin-top: auto; padding-top: 12px; display: flex; justify-content: flex-end; gap: 6px; }
+    .ss-btn { border: 1px solid rgba(255, 255, 255, .75); padding: 3px 10px; white-space: nowrap; }
+    .ss-btn.dim { opacity: .6; }
+    .hl { position: relative; outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+    .hl::after {
+      content: attr(data-n); position: absolute; top: -13px; left: -13px;
+      width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--gold); color: #14100a; font-size: 11px; font-weight: 700; text-decoration: none;
+    }
+    .ih-foot { margin: 22px 0 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+    .ih-foot p { margin: 0; color: var(--muted); font-size: 14px; }
+    @media (max-width: 560px) {
+      .ih { padding: 24px 18px 20px; }
+      .ih h2 { font-size: 22px; }
+      .ss-frames { grid-template-columns: 1fr; }
+    }
+
     .final { text-align: center; padding: 110px 0 100px; }
     .final img { width: 72px; height: 72px; margin: 0 auto 18px; }
 
@@ -190,7 +246,7 @@
         <a href="#installer">Installer</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn small" href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe">Télécharger</a>
+      <a class="btn small" href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe" data-download>Télécharger</a>
     </div>
   </header>
 
@@ -201,7 +257,7 @@
         <h1>Gagne ta partie<br><em>dès la draft.</em></h1>
         <p class="lead">Kingmaker classe tes picks et tes bans selon ce qu'ils ajoutent vraiment à tes chances de gagner, contre l'équipe ennemie <b>et</b> avec la tienne. Et il t'explique pourquoi.</p>
         <div class="cta">
-          <a class="btn" href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe">
+          <a class="btn" href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe" data-download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
             Télécharger pour Windows
           </a>
@@ -315,7 +371,7 @@
         <div class="steps">
           <div class="card">
             <h3>Télécharge</h3>
-            <p><a href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe">Kingmaker-Setup.exe</a>, sur ton PC Windows.</p>
+            <p><a href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe" data-download>Kingmaker-Setup.exe</a>, sur ton PC Windows.</p>
           </div>
           <div class="card">
             <h3>Lance l'installeur</h3>
@@ -327,7 +383,7 @@
           </div>
         </div>
         <div class="smartscreen">
-          <b>« Windows a protégé votre ordinateur » ?</b> C'est normal : l'app n'est pas signée (la signature reconnue par Windows est payante). Clique sur <kbd>Informations complémentaires</kbd> puis <kbd>Exécuter quand même</kbd>. Ensuite, les mises à jour s'installent en un clic depuis l'app.
+          <b>« Windows a protégé votre ordinateur » ?</b> C'est normal : l'app n'est pas signée (la signature reconnue par Windows est payante). Clique sur <kbd>Informations complémentaires</kbd> puis <kbd>Exécuter quand même</kbd>. Ensuite, les mises à jour s'installent en un clic depuis l'app. <button class="link" type="button" data-help>Voir en images</button>
         </div>
       </div>
     </section>
@@ -366,7 +422,7 @@
         <img src="logo.svg" alt="">
         <h2>Ta prochaine draft commence ici.</h2>
         <div class="cta">
-          <a class="btn" href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe">
+          <a class="btn" href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe" data-download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
             Télécharger pour Windows
           </a>
@@ -374,6 +430,46 @@
       </div>
     </div>
   </main>
+
+  <dialog id="install-help" aria-labelledby="ih-title">
+    <div class="ih">
+      <button class="ih-close" type="button" aria-label="Fermer" data-close>×</button>
+      <h2 id="ih-title">Ton téléchargement commence</h2>
+      <p class="ih-sub">Windows ne connaît pas encore Kingmaker : il te demande de confirmer. C'est normal.</p>
+      <ol class="ih-steps">
+        <li>
+          <div class="ih-label"><span class="num">1</span>Ton navigateur bloque le fichier ?</div>
+          <div class="ih-chain ih-edge">
+            <kbd>⋯</kbd><span class="arrow">→</span><kbd>Conserver</kbd><span class="arrow">→</span><kbd>Afficher plus</kbd><span class="arrow">→</span><kbd>Conserver quand même</kbd>
+          </div>
+          <div class="ih-chain ih-other"><kbd>Conserver</kbd></div>
+        </li>
+        <li>
+          <div class="ih-label"><span class="num">2</span>Windows bloque l'installeur ?</div>
+          <div class="ss-frames">
+            <div class="ss">
+              <div class="ss-title">Windows a protégé votre ordinateur</div>
+              <div class="bar" aria-hidden="true"></div>
+              <div class="bar short" aria-hidden="true"></div>
+              <span class="ss-link hl" data-n="1">Informations complémentaires</span>
+              <div class="ss-buttons"><span class="ss-btn dim">Ne pas exécuter</span></div>
+            </div>
+            <div class="ss">
+              <div class="ss-title">Windows a protégé votre ordinateur</div>
+              <div class="bar short" aria-hidden="true"></div>
+              <div class="ss-meta">Application : Kingmaker-Setup.exe</div>
+              <div class="ss-meta">Éditeur : Éditeur inconnu</div>
+              <div class="ss-buttons"><span class="ss-btn hl" data-n="2">Exécuter quand même</span><span class="ss-btn dim">Ne pas exécuter</span></div>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <div class="ih-foot">
+        <p>Ensuite, l'app se met à jour toute seule.<br>Rien ne démarre ? <a href="https://github.com/olympio171/KingMaker/releases/latest/download/Kingmaker-Setup.exe">Relance le téléchargement</a></p>
+        <button class="btn" type="button" data-close>J'ai compris</button>
+      </div>
+    </div>
+  </dialog>
 
   <footer>
     <div class="wrap">
@@ -394,6 +490,24 @@
           `Version ${release.tag_name.replace(/^v/, '')} du ${date}${size} · gratuit · Windows 10 et 11`
       })
       .catch(() => {})
+
+    // Au clic sur « Télécharger », le fichier arrive et la fenêtre montre quoi confirmer
+    // (l'app n'est pas signée : Edge et Windows demandent de garder puis de lancer le fichier).
+    const help = document.getElementById('install-help')
+    const title = document.getElementById('ih-title')
+    if (!/Edg\//.test(navigator.userAgent)) help.classList.add('not-edge')
+    const openHelp = (text) => {
+      title.textContent = text
+      if (!help.open) help.showModal()
+    }
+    document.querySelectorAll('[data-download]').forEach((link) =>
+      link.addEventListener('click', () => openHelp('Ton téléchargement commence')))
+    document.querySelectorAll('[data-help]').forEach((button) =>
+      button.addEventListener('click', () => openHelp("Installer Kingmaker")))
+    help.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => help.close()))
+    help.addEventListener('click', (e) => {
+      if (e.target === help) help.close()
+    })
   </script>
 </body>
 </html>
